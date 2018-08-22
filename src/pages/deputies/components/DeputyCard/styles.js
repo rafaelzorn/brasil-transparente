@@ -23,6 +23,8 @@ export const StyledCard = styled(Card)`
         flex-direction: column;
         align-items: center;
         padding: 25px;
+        text-align: center;
+        height: 250px;
     }
 
     .name {

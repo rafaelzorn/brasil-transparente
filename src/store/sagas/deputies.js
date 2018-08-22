@@ -5,11 +5,19 @@ import { Creators as DeputiesActions } from '../ducks/deputies';
 
 export function* getDeputies(action) {
     try {
+        const { currentPage, filters } = action.payload;
+
+        const page = currentPage !== undefined ? currentPage : 1;
+
         const response = yield call(
             api.get,
-            `/deputados?pagina=${action.payload.currentPage}&itens=20&ordem=ASC&ordenarPor=nome`,
+            `/deputados?nome=${filters.name}&siglaUf=${filters.state}&siglaPartido=${
+                filters.party
+            }&pagina=${page}&itens=20&ordem=ASC&ordenarPor=nome`,
         );
 
-        yield put(DeputiesActions.getDeputiesSuccess(response.data.dados));
+        const hasMore = response.data.links.find(item => item.rel === 'next') !== undefined;
+
+        yield put(DeputiesActions.getDeputiesSuccess(response.data.dados, hasMore));
     } catch (err) {}
 }
