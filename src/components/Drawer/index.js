@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import Button from '@material-ui/core/Button';
-import { StyledDrawer, Form, StyledIcon } from './styles';
+
 import { Creators as StatesActions } from '../../store/ducks/states';
 import { Creators as PartiesActions } from '../../store/ducks/parties';
 import { Creators as DeputiesActions } from '../../store/ducks/deputies';
+
+import { StyledDrawer, Form, StyledIcon } from './styles';
 
 class Drawer extends Component {
     state = {

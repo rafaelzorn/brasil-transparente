@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import Grid from '@material-ui/core/Grid';
 import AddIcon from '@material-ui/icons/Add';
+
 import Loading from '../../components/Loading';
 import Message from '../../components/Message';
 import DeputyCard from './components/DeputyCard';
+
 import { Creators as DeputiesActions } from '../../store/ducks/deputies';
 import { StyledButton, ContainerButtonMore } from './styles';
 
