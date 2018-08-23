@@ -22,34 +22,25 @@ export const StyledCard = styled(Card)`
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 25px;
+        padding: 20px;
+        height: 210px;
         text-align: center;
-        height: 250px;
     }
 
-    .name {
-        margin-bottom: 5px;
+    > span {
+        margin-bottom: 10px;
         color: #3d3d3d;
-        font-weight: 700;
         font-size: 12px;
+        font-weight: 700;
     }
 
     .party {
         padding: 8px 0;
-        margin: 15px auto;
         width: 100px;
-        font-size: 12px;
-        font-weight: 700;
         color: #fff;
         border-radius: 30px;
-        background: linear-gradient(to right, #009b3a, #fedf00);
+        background: #394263;
         text-align: center;
-    }
-
-    .state {
-        font-size: 12px;
-        font-weight: 700;
-        color: #c0c6d1;
     }
 `;
 

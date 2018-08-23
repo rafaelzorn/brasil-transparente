@@ -6,12 +6,6 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme();
 const paper = 'drawerPaper';
 
-export const StyledIcon = styled(Icon)`
-    && {
-        margin-right: ${theme.spacing.unit}px;
-    }
-`;
-
 export const StyledDrawer = styled(Drawer).attrs({ classes: { paper } })`
     .${paper} {
         padding: 20px 20px 0 20px;
@@ -37,6 +31,7 @@ export const Form = styled.form`
         border-radius: 3px;
         outline: none;
         color: #8c8c8c;
+        text-transform: uppercase;
 
         &::-webkit-input-placeholder {
             color: #8c8c8c;
@@ -77,5 +72,11 @@ export const Form = styled.form`
 
     .btn-search {
         margin-right: 5px;
+    }
+`;
+
+export const StyledIcon = styled(Icon)`
+    && {
+        margin-right: ${theme.spacing.unit}px;
     }
 `;

@@ -2,6 +2,7 @@ import { call, put } from 'redux-saga/effects';
 import api from '../../services/api';
 
 import { Creators as DeputiesActions } from '../ducks/deputies';
+import { Creators as ToastsActions, Types as ToastTypes } from '../ducks/toasts';
 
 export function* getDeputies(action) {
     try {
@@ -19,5 +20,10 @@ export function* getDeputies(action) {
         const hasMore = response.data.links.find(item => item.rel === 'next') !== undefined;
 
         yield put(DeputiesActions.getDeputiesSuccess(response.data.dados, hasMore));
-    } catch (err) {}
+    } catch (err) {
+        yield put({
+            type: ToastTypes.SHOW_TOAST,
+            toast: ToastsActions.buildToast('Erro ao carregar deputados', ToastTypes.ERROR),
+        });
+    }
 }

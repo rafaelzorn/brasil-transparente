@@ -7,11 +7,13 @@
         "@material-ui/icons": "^2.0.0",
         "axios": "^0.18.0",
         "font-awesome": "^4.7.0",
+        "moment": "^2.22.2",
         "prop-types": "^15.6.2",
         "react": "^16.4.1",
         "react-dom": "^16.4.1",
         "react-redux": "^5.0.7",
         "react-router-dom": "^4.3.1",
+        "react-toastify": "^4.2.0",
         "redux": "^4.0.0",
         "redux-saga": "^0.16.0",
         "styled-components": "^3.3.3"

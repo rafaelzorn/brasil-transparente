@@ -6,9 +6,9 @@ const DeputyCard = ({ deputy }) => (
         <StyledCard>
             <StyledAvatar alt={deputy.nome} src={deputy.urlFoto} />
 
-            <span className="name">{deputy.nome}</span>
+            <span>{deputy.nome}</span>
             <span className="party">{deputy.siglaPartido}</span>
-            <span className="state">{deputy.siglaUf}</span>
+            <span>{deputy.siglaUf}</span>
         </StyledCard>
     </StyledLink>
 );
