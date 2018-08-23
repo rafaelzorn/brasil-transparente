@@ -1,38 +1,41 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import { yearsOld } from '../../../../../helpers';
+
 import { StyledSideBar, StyledCard, StyledAvatar } from './styles';
 
-const SideBar = ({ deputy }) => (
+const SideBar = ({ deputyDetails }) => (
     <StyledSideBar>
         <StyledCard>
-            <StyledAvatar alt={deputy.id} src={deputy.ultimoStatus.urlFoto} />
+            <StyledAvatar alt={deputyDetails.id} src={deputyDetails.ultimoStatus.urlFoto} />
 
-            <span>{deputy.ultimoStatus.nome}</span>
-            <span className="party">{deputy.ultimoStatus.siglaPartido}</span>
-            <span>{deputy.ultimoStatus.siglaUf}</span>
+            <span>{deputyDetails.ultimoStatus.nome}</span>
+            <span className="party">{deputyDetails.ultimoStatus.siglaPartido}</span>
+            <span>{deputyDetails.ultimoStatus.siglaUf}</span>
 
             <div className="about">
                 <h5>SOBRE:</h5>
 
                 <p>
-                    <b>{deputy.nomeCivil}</b> é um
-                    {deputy.sexo === 'F' && 'a'} deputad
-                    {deputy.sexo === 'F' ? 'a' : 'o'} brasileir
-                    {deputy.sexo === 'F' ? 'a' : 'o'} pelo partido{' '}
-                    <b>{deputy.ultimoStatus.siglaPartido}</b>, tem{' '}
-                    <b>{yearsOld(deputy.dataNascimento)} anos</b> e nasceu na cidade de{' '}
+                    <b>{deputyDetails.nomeCivil}</b> é um
+                    {deputyDetails.sexo === 'F' && 'a'} deputad
+                    {deputyDetails.sexo === 'F' ? 'a' : 'o'} brasileir
+                    {deputyDetails.sexo === 'F' ? 'a' : 'o'} pelo partido{' '}
+                    <b>{deputyDetails.ultimoStatus.siglaPartido}</b>, tem{' '}
+                    <b>{yearsOld(deputyDetails.dataNascimento)} anos</b> e nasceu na cidade de{' '}
                     <b>
-                        {deputy.municipioNascimento}/{deputy.ufNascimento}
+                        {deputyDetails.municipioNascimento}/{deputyDetails.ufNascimento}
                     </b>
                     .
                 </p>
 
                 <span className="situation">
-                    <b>SITUAÇÃO:</b> {deputy.ultimoStatus.situacao}
+                    <b>SITUAÇÃO:</b> {deputyDetails.ultimoStatus.situacao}
                 </span>
 
                 <span className="situation">
-                    <b>GRADUAÇÃO:</b> {deputy.escolaridade}
+                    <b>GRADUAÇÃO:</b> {deputyDetails.escolaridade}
                 </span>
             </div>
 
@@ -41,15 +44,22 @@ const SideBar = ({ deputy }) => (
 
                 <span>
                     <i className="fa fa-envelope" /> <b>E-mail:</b>{' '}
-                    {deputy.ultimoStatus.gabinete.email}
+                    {deputyDetails.ultimoStatus.gabinete.email}
                 </span>
                 <span>
                     <i className="fa fa-phone" /> <b>Telefone:</b>{' '}
-                    {deputy.ultimoStatus.gabinete.telefone}
+                    {deputyDetails.ultimoStatus.gabinete.telefone}
                 </span>
             </div>
         </StyledCard>
     </StyledSideBar>
 );
 
-export default SideBar;
+const mapStateToProps = state => ({
+    deputyDetails: state.deputyDetails.data,
+});
+
+export default connect(
+    mapStateToProps,
+    {},
+)(SideBar);

@@ -75,7 +75,7 @@ class Deputy extends Component {
                         <Loading />
                     ) : (
                         <Fragment>
-                            <SideBar deputy={deputyDetails.data} />
+                            <SideBar />
 
                             <Content>
                                 <TabsInfo
