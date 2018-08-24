@@ -29,4 +29,12 @@ injectGlobal`
     button {
         cursor: pointer;
     }
+
+    .ReactModal__Overlay--after-open {
+        display: flex;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.75) !important;
+        z-index: 9999;
+        padding: 20px 0;
+    }
 `;

@@ -8,7 +8,7 @@ import Loading from '../../components/Loading';
 import Message from '../../components/Message';
 import DeputyCard from './components/DeputyCard';
 
-import { Creators as DeputiesActions } from '../../store/ducks/deputies';
+import { Creators as DeputiesActions } from '../../store/ducks/deputies/deputies';
 import { StyledButton, ContainerButtonMore } from './styles';
 
 class Deputies extends Component {

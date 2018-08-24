@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Paper from '@material-ui/core/Paper';
 
 export const StyledPaperContainer = styled(Paper)`
-    height: 400px;
     margin-bottom: 20px;
     padding: 10px;
     overflow-y: scroll;
@@ -77,12 +76,13 @@ export const StyledPaperExpense = styled(Paper)`
 
     .content-bottom {
         display: flex;
-        justify-content: space-between;
-        text-align: center;
-        font-size: 12px;
+        font-size: 18px;
+        padding: 10px 0;
 
-        > span {
-            flex: 1;
+        .button-info {
+            margin: 0 auto;
+            color: #fff;
+            background: #394263;
         }
     }
 `;

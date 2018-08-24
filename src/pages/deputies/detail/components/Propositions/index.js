@@ -2,35 +2,37 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 import Loading from '../../../../../components/Loading';
 import Calendar from '../../../../../components/Calendar';
 
 import { StyledPaperContainer, StyledPaperExpense } from './styles';
 
-import { Creators as DeputyProjectsActions } from '../../../../../store/ducks/deputyProjects';
+import { Creators as PropositionsActions } from '../../../../../store/ducks/deputies/propositions';
 import { Creators as CalendarActions } from '../../../../../store/ducks/calendar';
 
 class Projects extends Component {
     componentDidMount = () => {
         const {
-            getDeputyProjectsRequest, deputyId, calendar, setCurrentDate,
+            getPropositionsRequest, deputyId, calendar, setCurrentDate,
         } = this.props;
 
         setCurrentDate();
 
-        getDeputyProjectsRequest(deputyId, calendar.year);
+        getPropositionsRequest(deputyId, calendar.year);
     };
 
     componentDidUpdate = (prevProps) => {
-        const { calendar, deputyId, getDeputyProjectsRequest } = this.props;
+        const { calendar, deputyId, getPropositionsRequest } = this.props;
 
         if (prevProps.calendar !== calendar) {
-            getDeputyProjectsRequest(deputyId, calendar.year);
+            getPropositionsRequest(deputyId, calendar.year);
         }
     };
 
     render() {
-        const { deputyProjects, calendar } = this.props;
+        const { propositions, calendar } = this.props;
 
         return (
             <Fragment>
@@ -39,33 +41,35 @@ class Projects extends Component {
                 <StyledPaperContainer>
                     <div className="total">
                         <span className="value">
-                            MOVIMENTOU <b>{deputyProjects.data.length}</b> PROJETOS EM{' '}
+                            MOVIMENTOU <b>{propositions.data.length}</b> PROJETOS EM{' '}
                             <b>{calendar.year}</b>
                         </span>
                     </div>
 
-                    {deputyProjects.loading ? (
+                    {propositions.loading ? (
                         <Loading />
                     ) : (
-                        deputyProjects.data.map(deputyProject => (
-                            <StyledPaperExpense key={deputyProject.numero + deputyProject.ano}>
+                        propositions.data.map(proposition => (
+                            <StyledPaperExpense key={proposition.numero + proposition.ano}>
                                 <div className="content-higher">
                                     <span className="name">
-                                        {deputyProject.siglaTipo} {deputyProject.numero}/
-                                        {deputyProject.ano}
+                                        {proposition.siglaTipo} {proposition.numero}/
+                                        {proposition.ano}
                                     </span>
-                                    <p>{deputyProject.ementa}</p>
+                                    <p>{proposition.ementa}</p>
                                 </div>
 
                                 <hr />
 
                                 <div className="content-bottom">
-                                    <span>
-                                        <i className="fa fa-file" /> Pdf
-                                    </span>
-                                    <span>
-                                        <i className="fa fa-history" /> Histórico
-                                    </span>
+                                    <Button
+                                        variant="outlined"
+                                        size="small"
+                                        color="primary"
+                                        className="button-info"
+                                    >
+                                        <Icon>search</Icon> Acessar Informações
+                                    </Button>
                                 </div>
                             </StyledPaperExpense>
                         ))
@@ -77,11 +81,11 @@ class Projects extends Component {
 }
 
 const mapStateToProps = state => ({
-    deputyProjects: state.deputyProjects,
+    propositions: state.propositions,
     calendar: state.calendar,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ ...DeputyProjectsActions, ...CalendarActions }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...PropositionsActions, ...CalendarActions }, dispatch);
 
 export default connect(
     mapStateToProps,

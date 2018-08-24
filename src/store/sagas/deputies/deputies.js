@@ -1,8 +1,8 @@
 import { call, put } from 'redux-saga/effects';
-import api from '../../services/api';
+import api from '../../../services/api';
 
-import { Creators as DeputiesActions } from '../ducks/deputies';
-import { Creators as ToastsActions, Types as ToastTypes } from '../ducks/toasts';
+import { Creators as DeputiesActions } from '../../ducks/deputies/deputies';
+import { Creators as ToastsActions, Types as ToastTypes } from '../../ducks/toasts';
 
 export function* getDeputies(action) {
     try {
@@ -12,9 +12,9 @@ export function* getDeputies(action) {
 
         const response = yield call(
             api.get,
-            `/deputados?nome=${filters.name}&siglaUf=${filters.state}&siglaPartido=${
+            `/deputados?itens=20&nome=${filters.name}&siglaUf=${filters.state}&siglaPartido=${
                 filters.party
-            }&pagina=${page}&itens=20&ordem=ASC&ordenarPor=nome`,
+            }&pagina=${page}&ordem=ASC&ordenarPor=nome`,
         );
 
         const hasMore = response.data.links.find(item => item.rel === 'next') !== undefined;

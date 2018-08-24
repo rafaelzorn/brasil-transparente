@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 
 import { Creators as StatesActions } from '../../store/ducks/states';
 import { Creators as PartiesActions } from '../../store/ducks/parties';
-import { Creators as DeputiesActions } from '../../store/ducks/deputies';
+import { Creators as DeputiesActions } from '../../store/ducks/deputies/deputies';
 
 import { StyledDrawer, Form, StyledIcon } from './styles';
 

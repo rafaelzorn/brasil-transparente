@@ -1,8 +1,8 @@
 import { call, put } from 'redux-saga/effects';
-import api from '../../services/api';
+import api from '../../../services/api';
 
-import { Creators as DeputyDetailsActions } from '../ducks/deputyDetails';
-import { Creators as ToastsActions, Types as ToastTypes } from '../ducks/toasts';
+import { Creators as DeputyDetailsActions } from '../../ducks/deputies/deputyDetails';
+import { Creators as ToastsActions, Types as ToastTypes } from '../../ducks/toasts';
 
 export function* getDeputyDetails(action) {
     try {

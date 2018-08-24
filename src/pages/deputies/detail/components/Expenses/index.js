@@ -7,7 +7,7 @@ import { formatReal, formatDate } from '../../../../../helpers';
 import Loading from '../../../../../components/Loading';
 import Calendar from '../../../../../components/Calendar';
 
-import { Creators as DeputyExpensesActions } from '../../../../../store/ducks/deputyExpenses';
+import { Creators as ExpensesActions } from '../../../../../store/ducks/deputies/expenses';
 import { Creators as CalendarActions } from '../../../../../store/ducks/calendar';
 
 import { StyledPaperContainer, StyledPaperExpense } from './styles';
@@ -15,24 +15,24 @@ import { StyledPaperContainer, StyledPaperExpense } from './styles';
 class Expenses extends Component {
     componentDidMount = () => {
         const {
-            getDeputyExpensesRequest, deputyId, calendar, setCurrentDate,
+            getExpensesRequest, deputyId, calendar, setCurrentDate,
         } = this.props;
 
         setCurrentDate();
 
-        getDeputyExpensesRequest(deputyId, calendar.month, calendar.year);
+        getExpensesRequest(deputyId, calendar.month, calendar.year);
     };
 
     componentDidUpdate = (prevProps) => {
-        const { calendar, deputyId, getDeputyExpensesRequest } = this.props;
+        const { calendar, deputyId, getExpensesRequest } = this.props;
 
         if (prevProps.calendar !== calendar) {
-            getDeputyExpensesRequest(deputyId, calendar.month, calendar.year);
+            getExpensesRequest(deputyId, calendar.month, calendar.year);
         }
     };
 
     render() {
-        const { deputyExpenses, total } = this.props;
+        const { expenses, total } = this.props;
 
         return (
             <Fragment>
@@ -44,27 +44,23 @@ class Expenses extends Component {
                         <span className="text">Gastos no mês</span>
                     </div>
 
-                    {deputyExpenses.loading ? (
+                    {expenses.loading ? (
                         <Loading />
                     ) : (
-                        deputyExpenses.data.map(deputyExpense => (
+                        expenses.data.map(expense => (
                             <StyledPaperExpense
-                                key={
-                                    deputyExpense.ano
-                                    + deputyExpense.month
-                                    + deputyExpense.valorDocumento
-                                }
+                                key={Math.random(10)}
                             >
                                 <div className="content-higher">
                                     <div>
                                         <span className="value">
-                                            R$ {formatReal(deputyExpense.valorDocumento)}
+                                            R$ {formatReal(expense.valorDocumento)}
                                         </span>
-                                        <span>GASTOS EM {deputyExpense.tipoDespesa}</span>
+                                        <span>GASTOS EM {expense.tipoDespesa}</span>
                                     </div>
                                     <div className="date">
                                         <i className="fa fa-calendar" />{' '}
-                                        <span>{formatDate(deputyExpense.dataDocumento)}</span>
+                                        <span>{formatDate(expense.dataDocumento)}</span>
                                     </div>
                                 </div>
 
@@ -72,7 +68,7 @@ class Expenses extends Component {
 
                                 <div className="content-provider">
                                     <i className="fa fa-truck" />{' '}
-                                    <span>{deputyExpense.nomeFornecedor}</span>
+                                    <span>{expense.nomeFornecedor}</span>
                                 </div>
                             </StyledPaperExpense>
                         ))
@@ -84,12 +80,12 @@ class Expenses extends Component {
 }
 
 const mapStateToProps = state => ({
-    deputyExpenses: state.deputyExpenses,
+    expenses: state.expenses,
     calendar: state.calendar,
-    total: state.deputyExpenses.data.reduce((prevVal, item) => prevVal + item.valorDocumento, 0),
+    total: state.expenses.data.reduce((prevVal, item) => prevVal + item.valorDocumento, 0),
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ ...DeputyExpensesActions, ...CalendarActions }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...ExpensesActions, ...CalendarActions }, dispatch);
 
 export default connect(
     mapStateToProps,

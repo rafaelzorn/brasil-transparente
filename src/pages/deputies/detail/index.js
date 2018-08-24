@@ -10,11 +10,11 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import SideBar from './components/SideBar';
 import TabsInfo from './components/TabsInfo';
-import Projects from './components/Projects';
+import Propositions from './components/Propositions';
 import Expenses from './components/Expenses';
 import Loading from '../../../components/Loading';
 
-import { Creators as DeputyDetailsActions } from '../../../store/ducks/deputyDetails';
+import { Creators as DeputyDetailsActions } from '../../../store/ducks/deputies/deputyDetails';
 
 import { StyledAppBar, StyledDialogContent, Content } from './styles';
 
@@ -87,7 +87,7 @@ class Deputy extends Component {
                                     <Expenses deputyId={deputyDetails.data.id} />
                                 )}
                                 {currentTab === 'projects' && (
-                                    <Projects deputyId={deputyDetails.data.id} />
+                                    <Propositions deputyId={deputyDetails.data.id} />
                                 )}
                             </Content>
                         </Fragment>

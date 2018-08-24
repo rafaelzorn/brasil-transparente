@@ -1,6 +1,6 @@
 export const Types = {
-    GET_REQUEST: 'deputyProjects/GET_REQUEST',
-    GET_SUCCESS: 'deputyProjects/GET_SUCCESS',
+    GET_REQUEST: 'propositions/GET_REQUEST',
+    GET_SUCCESS: 'propositions/GET_SUCCESS',
 };
 
 const INITIAL_STATE = {
@@ -8,7 +8,7 @@ const INITIAL_STATE = {
     loading: false,
 };
 
-export default function deputyProjects(state = INITIAL_STATE, action) {
+export default function propositions(state = INITIAL_STATE, action) {
     switch (action.type) {
     case Types.GET_REQUEST:
         return { ...state, data: [], loading: true };
@@ -20,7 +20,7 @@ export default function deputyProjects(state = INITIAL_STATE, action) {
 }
 
 export const Creators = {
-    getDeputyProjectsRequest: (deputyId, year) => ({
+    getPropositionsRequest: (deputyId, year) => ({
         type: Types.GET_REQUEST,
         payload: {
             deputyId,
@@ -28,7 +28,7 @@ export const Creators = {
         },
     }),
 
-    getDeputyProjectsSuccess: data => ({
+    getPropositionsSuccess: data => ({
         type: Types.GET_SUCCESS,
         payload: { data },
     }),
