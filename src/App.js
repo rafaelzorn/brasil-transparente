@@ -9,6 +9,8 @@ import Routes from './routes';
 
 import store from './store';
 
+import 'moment/locale/pt-br';
+
 import { Root, Main } from './styles/components';
 import './styles/global';
 import 'react-toastify/dist/ReactToastify.min.css';

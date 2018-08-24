@@ -8,7 +8,10 @@ import { StyledSideBar, StyledCard, StyledAvatar } from './styles';
 const SideBar = ({ deputyDetails }) => (
     <StyledSideBar>
         <StyledCard>
-            <StyledAvatar alt={deputyDetails.id} src={deputyDetails.ultimoStatus.urlFoto} />
+            <StyledAvatar
+                alt={deputyDetails.ultimoStatus.nome}
+                src={deputyDetails.ultimoStatus.urlFoto}
+            />
 
             <span>{deputyDetails.ultimoStatus.nome}</span>
             <span className="party">{deputyDetails.ultimoStatus.siglaPartido}</span>

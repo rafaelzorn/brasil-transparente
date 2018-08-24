@@ -83,8 +83,12 @@ class Deputy extends Component {
                                     currentTab={currentTab}
                                 />
 
-                                {currentTab === 'expenses' && <Expenses />}
-                                {currentTab === 'projects' && <Projects />}
+                                {currentTab === 'expenses' && (
+                                    <Expenses deputyId={deputyDetails.data.id} />
+                                )}
+                                {currentTab === 'projects' && (
+                                    <Projects deputyId={deputyDetails.data.id} />
+                                )}
                             </Content>
                         </Fragment>
                     )}

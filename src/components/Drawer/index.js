@@ -92,7 +92,7 @@ class Drawer extends Component {
                             )}
 
                             {states.data.map(state => (
-                                <option>{state.sigla}</option>
+                                <option key={state.id}>{state.sigla}</option>
                             ))}
                         </select>
 
@@ -108,7 +108,7 @@ class Drawer extends Component {
                             )}
 
                             {parties.data.map(party => (
-                                <option>{party.sigla}</option>
+                                <option key={party.id}>{party.sigla}</option>
                             ))}
                         </select>
                     </div>
