@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Paper from '@material-ui/core/Paper';
 
 export const StyledPaperContainer = styled(Paper)`
+    height: 430px;
     margin-bottom: 20px;
     padding: 10px;
     overflow-y: scroll;

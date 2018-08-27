@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 
 import { Creators as CalendarActions } from '../../store/ducks/calendar';
@@ -58,6 +59,15 @@ class Calendar extends Component {
         );
     }
 }
+
+Calendar.propTypes = {
+    setDate: PropTypes.func.isRequired,
+    type: PropTypes.string.isRequired,
+    calendar: PropTypes.shape({
+        year: PropTypes.number,
+        month: PropTypes.number,
+    }).isRequired,
+};
 
 const mapStateToProps = state => ({
     calendar: state.calendar,

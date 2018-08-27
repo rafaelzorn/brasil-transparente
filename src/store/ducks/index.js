@@ -3,11 +3,10 @@ import { combineReducers } from 'redux';
 import states from './states';
 import parties from './parties';
 import calendar from './calendar';
-
-import deputies from './deputies/deputies';
-import deputyDetails from './deputies/deputyDetails';
-import expenses from './deputies/expenses';
-import propositions from './deputies/propositions';
+import deputies from './deputies';
+import deputyDetails from './deputyDetails';
+import deputyExpenses from './deputyExpenses';
+import deputyPropositions from './deputyPropositions';
 
 export default combineReducers({
     states,
@@ -15,6 +14,6 @@ export default combineReducers({
     calendar,
     deputies,
     deputyDetails,
-    expenses,
-    propositions,
+    deputyExpenses,
+    deputyPropositions,
 });

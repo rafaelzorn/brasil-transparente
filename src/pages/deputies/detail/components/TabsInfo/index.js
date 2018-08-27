@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -19,5 +20,10 @@ const TabsInfo = ({ handleChange, currentTab }) => (
         </Tabs>
     </Paper>
 );
+
+TabsInfo.propTypes = {
+    handleChange: PropTypes.func.isRequired,
+    currentTab: PropTypes.string.isRequired,
+};
 
 export default TabsInfo;

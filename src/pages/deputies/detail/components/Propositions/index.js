@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
@@ -9,30 +10,30 @@ import Calendar from '../../../../../components/Calendar';
 
 import { StyledPaperContainer, StyledPaperExpense } from './styles';
 
-import { Creators as PropositionsActions } from '../../../../../store/ducks/deputies/propositions';
+import { Creators as DeputyPropositionsActions } from '../../../../../store/ducks/deputyPropositions';
 import { Creators as CalendarActions } from '../../../../../store/ducks/calendar';
 
-class Projects extends Component {
+class Propositions extends Component {
     componentDidMount = () => {
         const {
-            getPropositionsRequest, deputyId, calendar, setCurrentDate,
+            getDeputyPropositionsRequest, deputyId, calendar, setCurrentDate,
         } = this.props;
 
         setCurrentDate();
 
-        getPropositionsRequest(deputyId, calendar.year);
+        getDeputyPropositionsRequest(deputyId, calendar.year);
     };
 
     componentDidUpdate = (prevProps) => {
-        const { calendar, deputyId, getPropositionsRequest } = this.props;
+        const { calendar, deputyId, getDeputyPropositionsRequest } = this.props;
 
         if (prevProps.calendar !== calendar) {
-            getPropositionsRequest(deputyId, calendar.year);
+            getDeputyPropositionsRequest(deputyId, calendar.year);
         }
     };
 
     render() {
-        const { propositions, calendar } = this.props;
+        const { deputyPropositions, calendar } = this.props;
 
         return (
             <Fragment>
@@ -41,22 +42,24 @@ class Projects extends Component {
                 <StyledPaperContainer>
                     <div className="total">
                         <span className="value">
-                            MOVIMENTOU <b>{propositions.data.length}</b> PROJETOS EM{' '}
+                            MOVIMENTOU <b>{deputyPropositions.data.length}</b> PROJETOS EM{' '}
                             <b>{calendar.year}</b>
                         </span>
                     </div>
 
-                    {propositions.loading ? (
+                    {deputyPropositions.loading ? (
                         <Loading />
                     ) : (
-                        propositions.data.map(proposition => (
-                            <StyledPaperExpense key={proposition.numero + proposition.ano}>
+                        deputyPropositions.data.map(deputyProposition => (
+                            <StyledPaperExpense
+                                key={deputyProposition.numero + deputyProposition.ano}
+                            >
                                 <div className="content-higher">
                                     <span className="name">
-                                        {proposition.siglaTipo} {proposition.numero}/
-                                        {proposition.ano}
+                                        {deputyProposition.siglaTipo} {deputyProposition.numero}/
+                                        {deputyProposition.ano}
                                     </span>
-                                    <p>{proposition.ementa}</p>
+                                    <p>{deputyProposition.ementa}</p>
                                 </div>
 
                                 <hr />
@@ -80,14 +83,35 @@ class Projects extends Component {
     }
 }
 
+Propositions.propTypes = {
+    deputyId: PropTypes.number.isRequired,
+    getDeputyPropositionsRequest: PropTypes.func.isRequired,
+    setCurrentDate: PropTypes.func.isRequired,
+    calendar: PropTypes.shape({
+        year: PropTypes.number,
+        month: PropTypes.number,
+    }).isRequired,
+    deputyPropositions: PropTypes.shape({
+        loading: PropTypes.bool,
+        data: PropTypes.arrayOf(
+            PropTypes.shape({
+                numero: PropTypes.number,
+                ano: PropTypes.number,
+                siglaTipo: PropTypes.string,
+                ementa: PropTypes.string,
+            }),
+        ),
+    }).isRequired,
+};
+
 const mapStateToProps = state => ({
-    propositions: state.propositions,
+    deputyPropositions: state.deputyPropositions,
     calendar: state.calendar,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ ...PropositionsActions, ...CalendarActions }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...DeputyPropositionsActions, ...CalendarActions }, dispatch);
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(Projects);
+)(Propositions);

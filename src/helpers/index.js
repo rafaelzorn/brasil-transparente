@@ -6,6 +6,8 @@ export const formatReal = (number) => {
     if (number !== undefined) {
         return number.toLocaleString('pt-br', { minimumFractionDigits: 2 });
     }
+
+    return null;
 };
 
 export const formatDate = date => moment(date).format('DD/MM/YYYY');

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { StyledLink, StyledCard, StyledAvatar } from './styles';
 
 const DeputyCard = ({ deputy }) => (
@@ -12,5 +14,15 @@ const DeputyCard = ({ deputy }) => (
         </StyledCard>
     </StyledLink>
 );
+
+DeputyCard.propTypes = {
+    deputy: PropTypes.shape({
+        id: PropTypes.number,
+        nome: PropTypes.string,
+        urlFoto: PropTypes.string,
+        siglaPartido: PropTypes.string,
+        siglaUf: PropTypes.string,
+    }).isRequired,
+};
 
 export default DeputyCard;

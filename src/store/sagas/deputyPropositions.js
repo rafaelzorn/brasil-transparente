@@ -1,10 +1,10 @@
 import { call, put } from 'redux-saga/effects';
-import api from '../../../services/api';
+import api from '../../services/api';
 
-import { Creators as PropositionsActions } from '../../ducks/deputies/propositions';
-import { Creators as ToastsActions, Types as ToastTypes } from '../../ducks/toasts';
+import { Creators as DeputyPropositionsActions } from '../ducks/deputyPropositions';
+import { Creators as ToastsActions, Types as ToastTypes } from '../ducks/toasts';
 
-export function* getPropositions(action) {
+export function* getDeputyPropositions(action) {
     try {
         const { deputyId, year } = action.payload;
 
@@ -13,7 +13,7 @@ export function* getPropositions(action) {
             `proposicoes?itens=100&ano=${year}&idAutor=${deputyId}&ordem=DESC&ordenarPor=ano`,
         );
 
-        yield put(PropositionsActions.getPropositionsSuccess(response.data.dados));
+        yield put(DeputyPropositionsActions.getDeputyPropositionsSuccess(response.data.dados));
     } catch (err) {
         yield put({
             type: ToastTypes.SHOW_TOAST,

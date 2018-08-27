@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
 import Grid from '@material-ui/core/Grid';
 import AddIcon from '@material-ui/icons/Add';
@@ -8,7 +9,8 @@ import Loading from '../../components/Loading';
 import Message from '../../components/Message';
 import DeputyCard from './components/DeputyCard';
 
-import { Creators as DeputiesActions } from '../../store/ducks/deputies/deputies';
+import { Creators as DeputiesActions } from '../../store/ducks/deputies';
+
 import { StyledButton, ContainerButtonMore } from './styles';
 
 class Deputies extends Component {
@@ -67,6 +69,22 @@ class Deputies extends Component {
         );
     }
 }
+
+Deputies.propTypes = {
+    getDeputiesRequest: PropTypes.func.isRequired,
+    deputies: PropTypes.shape({
+        loading: PropTypes.bool,
+        data: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.number,
+                nome: PropTypes.string,
+                urlFoto: PropTypes.string,
+                siglaPartido: PropTypes.string,
+                siglaUf: PropTypes.string,
+            }),
+        ),
+    }).isRequired,
+};
 
 const mapStateToProps = state => ({
     deputies: state.deputies,

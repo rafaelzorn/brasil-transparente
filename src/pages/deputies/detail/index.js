@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
 import { ToastContainer } from 'react-toastify';
 import Dialog from '@material-ui/core/Dialog';
@@ -14,7 +15,7 @@ import Propositions from './components/Propositions';
 import Expenses from './components/Expenses';
 import Loading from '../../../components/Loading';
 
-import { Creators as DeputyDetailsActions } from '../../../store/ducks/deputies/deputyDetails';
+import { Creators as DeputyDetailsActions } from '../../../store/ducks/deputyDetails';
 
 import { StyledAppBar, StyledDialogContent, Content } from './styles';
 
@@ -97,6 +98,24 @@ class Deputy extends Component {
         );
     }
 }
+
+Deputy.propTypes = {
+    getDeputyDetailsRequest: PropTypes.func.isRequired,
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            id: PropTypes.string,
+        }),
+    }).isRequired,
+    history: PropTypes.shape({
+        push: PropTypes.func,
+    }).isRequired,
+    deputyDetails: PropTypes.shape({
+        loading: PropTypes.bool,
+        data: PropTypes.shape({
+            id: PropTypes.number,
+        }),
+    }).isRequired,
+};
 
 const mapStateToProps = state => ({
     deputyDetails: state.deputyDetails,

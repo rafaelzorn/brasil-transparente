@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
 
 import { Creators as StatesActions } from '../../store/ducks/states';
 import { Creators as PartiesActions } from '../../store/ducks/parties';
-import { Creators as DeputiesActions } from '../../store/ducks/deputies/deputies';
+import { Creators as DeputiesActions } from '../../store/ducks/deputies';
 
 import { StyledDrawer, Form, StyledIcon } from './styles';
 
@@ -38,7 +39,7 @@ class Drawer extends Component {
         const { setFilters, deputies } = this.props;
         const { filters } = this.state;
 
-        if (filters !== deputies.filters) {
+        if (JSON.stringify(filters) !== JSON.stringify(deputies.filters)) {
             setFilters(filters);
         }
     };
@@ -55,11 +56,9 @@ class Drawer extends Component {
             },
         });
 
-        if (filters !== deputies.filters) {
-            return false;
+        if (filters === deputies.filters) {
+            clearFilters();
         }
-
-        clearFilters();
     };
 
     render() {
@@ -85,7 +84,7 @@ class Drawer extends Component {
                             value={filters.state}
                             onChange={this.handleFilterChange}
                         >
-                            {parties.loading ? (
+                            {states.loading ? (
                                 <option>AGUARDE, CARREGANDO...</option>
                             ) : (
                                 <option>ESTADO</option>
@@ -132,6 +131,34 @@ class Drawer extends Component {
         );
     }
 }
+
+Drawer.propTypes = {
+    getPartiesRequest: PropTypes.func.isRequired,
+    getStatesRequest: PropTypes.func.isRequired,
+    setFilters: PropTypes.func.isRequired,
+    clearFilters: PropTypes.func.isRequired,
+    deputies: PropTypes.shape({
+        filters: PropTypes.shape({}).isRequired,
+    }).isRequired,
+    parties: PropTypes.shape({
+        loading: PropTypes.bool,
+        data: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.number,
+                sigla: PropTypes.string,
+            }),
+        ),
+    }).isRequired,
+    states: PropTypes.shape({
+        loading: PropTypes.bool,
+        data: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.string,
+                sigla: PropTypes.string,
+            }),
+        ),
+    }).isRequired,
+};
 
 const mapStateToProps = state => ({
     states: state.states,

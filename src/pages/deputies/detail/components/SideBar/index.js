@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { yearsOld } from '../../../../../helpers';
 
@@ -57,6 +58,28 @@ const SideBar = ({ deputyDetails }) => (
         </StyledCard>
     </StyledSideBar>
 );
+
+SideBar.propTypes = {
+    deputyDetails: PropTypes.shape({
+        nomeCivil: PropTypes.string,
+        sexo: PropTypes.string,
+        dataNascimento: PropTypes.string,
+        municipioNascimento: PropTypes.string,
+        ufNascimento: PropTypes.string,
+        escolaridade: PropTypes.string,
+        ultimoStatus: PropTypes.shape({
+            nome: PropTypes.string,
+            urlFoto: PropTypes.string,
+            siglaPartido: PropTypes.string,
+            siglaUf: PropTypes.string,
+            situacao: PropTypes.string,
+            gabinete: PropTypes.shape({
+                email: PropTypes.string,
+                telefone: PropTypes.string,
+            }).isRequired,
+        }).isRequired,
+    }).isRequired,
+};
 
 const mapStateToProps = state => ({
     deputyDetails: state.deputyDetails.data,
