@@ -2,7 +2,7 @@
 
 Informações a respeito de gastos, projetos de deputados de forma fácil e rápida extraidas diretamente da api governamental.
 
-Esse é um o meu projeto final do curso GoReact da Rocketseat.
+Esse é meu projeto final, desenvolvido para o curso GoReact da Rocketseat.
 
 ### Instalando
 
