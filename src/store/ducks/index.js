@@ -7,6 +7,10 @@ import deputies from './deputies';
 import deputyDetails from './deputyDetails';
 import deputyExpenses from './deputyExpenses';
 import deputyPropositions from './deputyPropositions';
+import propositionDetails from './propositionDetails';
+import propositionProceedings from './propositionProceedings';
+import modal from './modal';
+import deputyExpensesByYear from './deputyExpensesByYear';
 
 export default combineReducers({
     states,
@@ -16,4 +20,8 @@ export default combineReducers({
     deputyDetails,
     deputyExpenses,
     deputyPropositions,
+    modal,
+    propositionDetails,
+    propositionProceedings,
+    deputyExpensesByYear,
 });

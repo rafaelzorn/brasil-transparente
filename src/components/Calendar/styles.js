@@ -20,7 +20,7 @@ export const Container = styled.div`
     .arrow {
         font-size: 40px;
         cursor: pointer;
-        font-weight: bold;   
+        font-weight: bold;
         color: #394263;
     }
 `;

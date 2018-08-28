@@ -2,13 +2,16 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import { formatReal, formatDate } from '../../../../../helpers';
 
 import Loading from '../../../../../components/Loading';
+import Chart from '../../../../../components/Chart';
 import Calendar from '../../../../../components/Calendar';
 
 import { Creators as DeputyExpensesActions } from '../../../../../store/ducks/deputyExpenses';
+import { Creators as DeputyExpensesByYearActions } from '../../../../../store/ducks/deputyExpensesByYear';
 import { Creators as CalendarActions } from '../../../../../store/ducks/calendar';
 
 import { StyledPaperContainer, StyledPaperExpense } from './styles';
@@ -16,28 +19,50 @@ import { StyledPaperContainer, StyledPaperExpense } from './styles';
 class Expenses extends Component {
     componentDidMount = () => {
         const {
-            getDeputyExpensesRequest, deputyId, calendar, setCurrentDate,
+            getDeputyExpensesRequest,
+            deputyId,
+            calendar,
+            setCurrentDate,
+            getDeputyExpensesByYearRequest,
         } = this.props;
 
         setCurrentDate();
 
         getDeputyExpensesRequest(deputyId, calendar.month, calendar.year);
+        getDeputyExpensesByYearRequest(deputyId, calendar.year);
     };
 
     componentDidUpdate = (prevProps) => {
-        const { calendar, deputyId, getDeputyExpensesRequest } = this.props;
+        const {
+            calendar,
+            deputyId,
+            getDeputyExpensesRequest,
+            getDeputyExpensesByYearRequest,
+        } = this.props;
 
         if (prevProps.calendar !== calendar) {
             getDeputyExpensesRequest(deputyId, calendar.month, calendar.year);
         }
+
+        if (prevProps.calendar.year !== calendar.year) {
+            getDeputyExpensesByYearRequest(deputyId, calendar.year);
+        }
     };
 
     render() {
-        const { deputyExpenses, total } = this.props;
+        const { deputyExpenses, total, deputyExpensesByYear } = this.props;
+
+        let data = [];
+
+        deputyExpensesByYear.data.forEach((deputyExpense) => {
+            data = _.concat(data, { name: deputyExpense.month, Despesas: deputyExpense.expense });
+        });
 
         return (
             <Fragment>
                 <Calendar type="month" />
+
+                <Chart data={data} loading={deputyExpensesByYear.loading} />
 
                 <StyledPaperContainer>
                     <div className="total">
@@ -98,15 +123,29 @@ Expenses.propTypes = {
             }),
         ).isRequired,
     }).isRequired,
+    deputyExpensesByYear: PropTypes.shape({
+        loading: PropTypes.bool,
+        data: PropTypes.arrayOf(
+            PropTypes.shape({
+                month: PropTypes.string,
+                expense: PropTypes.number,
+            }),
+        ),
+    }).isRequired,
+    getDeputyExpensesByYearRequest: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
     deputyExpenses: state.deputyExpenses,
     calendar: state.calendar,
     total: state.deputyExpenses.data.reduce((prevVal, item) => prevVal + item.valorDocumento, 0),
+    deputyExpensesByYear: state.deputyExpensesByYear,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ ...DeputyExpensesActions, ...CalendarActions }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(
+    { ...DeputyExpensesActions, ...CalendarActions, ...DeputyExpensesByYearActions },
+    dispatch,
+);
 
 export default connect(
     mapStateToProps,

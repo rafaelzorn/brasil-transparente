@@ -16,7 +16,7 @@ const TabsInfo = ({ handleChange, currentTab }) => (
             value={currentTab}
         >
             <Tab icon={<AttachMoneyIcon />} label="DESPESAS" value="expenses" />
-            <Tab icon={<EditIcon />} label="PROJETOS" value="projects" />
+            <Tab icon={<EditIcon />} label="PROPOSIÇÕES" value="propositions" />
         </Tabs>
     </Paper>
 );

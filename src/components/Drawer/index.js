@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import Button from '@material-ui/core/Button';
 
@@ -39,13 +40,13 @@ class Drawer extends Component {
         const { setFilters, deputies } = this.props;
         const { filters } = this.state;
 
-        if (JSON.stringify(filters) !== JSON.stringify(deputies.filters)) {
+        if (!_.isEqual(filters, deputies.filters)) {
             setFilters(filters);
         }
     };
 
     handleClearFilters = () => {
-        const { clearFilters, deputies } = this.props;
+        const { clearFilters } = this.props;
         const { filters } = this.state;
 
         this.setState({
@@ -56,7 +57,7 @@ class Drawer extends Component {
             },
         });
 
-        if (filters === deputies.filters) {
+        if (!(_.isEmpty(filters.name) && _.isEmpty(filters.state) && _.isEmpty(filters.party))) {
             clearFilters();
         }
     };

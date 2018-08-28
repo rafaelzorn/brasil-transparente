@@ -87,7 +87,7 @@ class Deputy extends Component {
                                 {currentTab === 'expenses' && (
                                     <Expenses deputyId={deputyDetails.data.id} />
                                 )}
-                                {currentTab === 'projects' && (
+                                {currentTab === 'propositions' && (
                                     <Propositions deputyId={deputyDetails.data.id} />
                                 )}
                             </Content>

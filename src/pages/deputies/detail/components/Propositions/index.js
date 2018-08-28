@@ -7,11 +7,13 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import Loading from '../../../../../components/Loading';
 import Calendar from '../../../../../components/Calendar';
+import ModalPropositionDetails from './components/ModalPropositionDetails';
 
 import { StyledPaperContainer, StyledPaperExpense } from './styles';
 
 import { Creators as DeputyPropositionsActions } from '../../../../../store/ducks/deputyPropositions';
 import { Creators as CalendarActions } from '../../../../../store/ducks/calendar';
+import { Creators as ModalActions } from '../../../../../store/ducks/modal';
 
 class Propositions extends Component {
     componentDidMount = () => {
@@ -33,7 +35,9 @@ class Propositions extends Component {
     };
 
     render() {
-        const { deputyPropositions, calendar } = this.props;
+        const {
+            deputyPropositions, calendar, showModal, modal,
+        } = this.props;
 
         return (
             <Fragment>
@@ -42,7 +46,7 @@ class Propositions extends Component {
                 <StyledPaperContainer>
                     <div className="total">
                         <span className="value">
-                            MOVIMENTOU <b>{deputyPropositions.data.length}</b> PROJETOS EM{' '}
+                            APRESENTOU <b>{deputyPropositions.data.length}</b> PROPOSIÇÕES EM{' '}
                             <b>{calendar.year}</b>
                         </span>
                     </div>
@@ -52,7 +56,7 @@ class Propositions extends Component {
                     ) : (
                         deputyPropositions.data.map(deputyProposition => (
                             <StyledPaperExpense
-                                key={deputyProposition.numero + deputyProposition.ano}
+                                key={Math.random(10)}
                             >
                                 <div className="content-higher">
                                     <span className="name">
@@ -70,6 +74,8 @@ class Propositions extends Component {
                                         size="small"
                                         color="primary"
                                         className="button-info"
+                                        onClick={() => showModal({ propositionId: deputyProposition.id })
+                                        }
                                     >
                                         <Icon>search</Icon> Acessar Informações
                                     </Button>
@@ -78,6 +84,8 @@ class Propositions extends Component {
                         ))
                     )}
                 </StyledPaperContainer>
+
+                {modal.visible && <ModalPropositionDetails />}
             </Fragment>
         );
     }
@@ -87,9 +95,14 @@ Propositions.propTypes = {
     deputyId: PropTypes.number.isRequired,
     getDeputyPropositionsRequest: PropTypes.func.isRequired,
     setCurrentDate: PropTypes.func.isRequired,
+    showModal: PropTypes.func.isRequired,
     calendar: PropTypes.shape({
         year: PropTypes.number,
         month: PropTypes.number,
+    }).isRequired,
+    modal: PropTypes.shape({
+        visible: PropTypes.bool,
+        params: PropTypes.object,
     }).isRequired,
     deputyPropositions: PropTypes.shape({
         loading: PropTypes.bool,
@@ -107,9 +120,13 @@ Propositions.propTypes = {
 const mapStateToProps = state => ({
     deputyPropositions: state.deputyPropositions,
     calendar: state.calendar,
+    modal: state.modal,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ ...DeputyPropositionsActions, ...CalendarActions }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(
+    { ...DeputyPropositionsActions, ...CalendarActions, ...ModalActions },
+    dispatch,
+);
 
 export default connect(
     mapStateToProps,
