@@ -32,8 +32,12 @@ export function* getDeputyExpensesByYear(action) {
         let i = 1;
         const months = [];
         while (i <= Object.keys(data).length) {
+            const expense = data[i] !== undefined
+                ? data[i].reduce((prevVal, item) => prevVal + item.valorDocumento, 0)
+                : 0;
+
             months[i] = {
-                expense: data[i].reduce((prevVal, item) => prevVal + item.valorDocumento, 0),
+                expense,
                 month: moment()
                     .month(i - 1)
                     .format('MMMM'),
