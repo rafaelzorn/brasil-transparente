@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
@@ -20,6 +22,10 @@ const AppBar = ({ showDrawer }) => (
         </Toolbar>
     </StyledAppBar>
 );
+
+AppBar.propTypes = {
+    showDrawer: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators(DrawerActions, dispatch);
 

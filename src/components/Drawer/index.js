@@ -159,6 +159,9 @@ Drawer.propTypes = {
             }),
         ),
     }).isRequired,
+    drawer: PropTypes.shape({
+        visible: PropTypes.bool,
+    }).isRequired,
 };
 
 const mapStateToProps = state => ({
