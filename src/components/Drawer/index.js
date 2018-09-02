@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import { Creators as StatesActions } from '../../store/ducks/states';
 import { Creators as PartiesActions } from '../../store/ducks/parties';
 import { Creators as DeputiesActions } from '../../store/ducks/deputies';
+import { Creators as DrawerActions } from '../../store/ducks/drawer';
 
 import { StyledDrawer, Form, StyledIcon } from './styles';
 
@@ -37,16 +38,17 @@ class Drawer extends Component {
     handleFilters = (e) => {
         e.preventDefault();
 
-        const { setFilters, deputies } = this.props;
+        const { setFilters, deputies, showDrawer } = this.props;
         const { filters } = this.state;
 
         if (!_.isEqual(filters, deputies.filters)) {
             setFilters(filters);
+            showDrawer();
         }
     };
 
     handleClearFilters = () => {
-        const { clearFilters } = this.props;
+        const { clearFilters, showDrawer } = this.props;
         const { filters } = this.state;
 
         this.setState({
@@ -59,6 +61,7 @@ class Drawer extends Component {
 
         if (!(_.isEmpty(filters.name) && _.isEmpty(filters.state) && _.isEmpty(filters.party))) {
             clearFilters();
+            showDrawer();
         }
     };
 
@@ -171,7 +174,15 @@ const mapStateToProps = state => ({
     drawer: state.drawer,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ ...StatesActions, ...PartiesActions, ...DeputiesActions }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(
+    {
+        ...StatesActions,
+        ...PartiesActions,
+        ...DeputiesActions,
+        ...DrawerActions,
+    },
+    dispatch,
+);
 
 export default connect(
     mapStateToProps,

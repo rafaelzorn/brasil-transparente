@@ -2,7 +2,6 @@ import { call, put } from 'redux-saga/effects';
 import api from '../../services/api';
 
 import { Creators as DeputiesActions } from '../ducks/deputies';
-import { Creators as DrawerActions } from '../ducks/drawer';
 import { Creators as ToastsActions, Types as ToastTypes } from '../ducks/toasts';
 
 export function* getDeputies(action) {
@@ -26,7 +25,5 @@ export function* getDeputies(action) {
             type: ToastTypes.SHOW_TOAST,
             toast: ToastsActions.buildToast('Erro ao carregar deputados', ToastTypes.ERROR),
         });
-    } finally {
-        yield put(DrawerActions.showDrawer());
     }
 }

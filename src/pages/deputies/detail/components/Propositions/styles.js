@@ -18,6 +18,10 @@ export const StyledPaperContainer = styled(Paper)`
 
         .value {
             font-size: 28px;
+
+            @media (max-width: 900px) {
+                font-size: 18px;
+            }
         }
     }
 
