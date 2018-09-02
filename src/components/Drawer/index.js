@@ -64,10 +64,10 @@ class Drawer extends Component {
 
     render() {
         const { filters } = this.state;
-        const { parties, states } = this.props;
+        const { parties, states, drawer } = this.props;
 
         return (
-            <StyledDrawer variant="permanent">
+            <StyledDrawer variant="permanent" visible={drawer.visible}>
                 <div className="toolbar" />
 
                 <Form onSubmit={this.handleFilters}>
@@ -165,6 +165,7 @@ const mapStateToProps = state => ({
     states: state.states,
     parties: state.parties,
     deputies: state.deputies,
+    drawer: state.drawer,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ ...StatesActions, ...PartiesActions, ...DeputiesActions }, dispatch);

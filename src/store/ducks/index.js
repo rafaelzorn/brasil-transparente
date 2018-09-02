@@ -10,6 +10,7 @@ import deputyPropositions from './deputyPropositions';
 import propositionDetails from './propositionDetails';
 import propositionProceedings from './propositionProceedings';
 import modal from './modal';
+import drawer from './drawer';
 import deputyExpensesByYear from './deputyExpensesByYear';
 
 export default combineReducers({
@@ -21,6 +22,7 @@ export default combineReducers({
     deputyExpenses,
     deputyPropositions,
     modal,
+    drawer,
     propositionDetails,
     propositionProceedings,
     deputyExpensesByYear,

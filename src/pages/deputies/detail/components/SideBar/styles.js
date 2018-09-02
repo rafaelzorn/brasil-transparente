@@ -5,6 +5,10 @@ import Avatar from '@material-ui/core/Avatar';
 export const StyledSideBar = styled.div`
     width: 30%;
     padding: 20px;
+
+    @media (max-width: 900px) {
+        width: 100%;
+    }
 `;
 
 export const StyledCard = styled(Card)`

@@ -9,9 +9,17 @@ const paper = 'drawerPaper';
 export const StyledDrawer = styled(Drawer).attrs({ classes: { paper } })`
     .${paper} {
         padding: 20px 20px 0 20px;
-        position: relative;
         width: 300px;
         min-height: 100%;
+        display: ${({ visible }) => (visible ? 'block' : 'none')};
+
+        @media (min-width: 900px) {
+            position: relative;
+        }
+
+        @media (max-width: 900px) {
+            width: 100%;
+        }
     },
 `;
 
