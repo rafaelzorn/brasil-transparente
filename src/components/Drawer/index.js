@@ -48,7 +48,7 @@ class Drawer extends Component {
     };
 
     handleClearFilters = () => {
-        const { clearFilters, showDrawer } = this.props;
+        const { clearFilters } = this.props;
         const { filters } = this.state;
 
         this.setState({
@@ -61,7 +61,6 @@ class Drawer extends Component {
 
         if (!(_.isEmpty(filters.name) && _.isEmpty(filters.state) && _.isEmpty(filters.party))) {
             clearFilters();
-            showDrawer();
         }
     };
 
@@ -70,7 +69,7 @@ class Drawer extends Component {
         const { parties, states, drawer } = this.props;
 
         return (
-            <StyledDrawer variant="permanent" visible={drawer.visible}>
+            <StyledDrawer variant="permanent" visible={drawer.visible.toString()}>
                 <div className="toolbar" />
 
                 <Form onSubmit={this.handleFilters}>
@@ -165,6 +164,7 @@ Drawer.propTypes = {
     drawer: PropTypes.shape({
         visible: PropTypes.bool,
     }).isRequired,
+    showDrawer: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

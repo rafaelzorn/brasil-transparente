@@ -11,16 +11,16 @@ export const StyledDrawer = styled(Drawer).attrs({ classes: { paper } })`
         padding: 20px 20px 0 20px;
         width: 300px;
         min-height: 100%;
-        display: ${({ visible }) => (visible ? 'block' : 'none')};
+        display: ${({ visible }) => (visible === 'true' ? 'block' : 'none')};
 
         @media (min-width: 900px) {
             position: relative;
         }
 
         @media (max-width: 900px) {
-            width: 100%;
+            width: 80%;
         }
-    },
+    }
 `;
 
 export const Form = styled.form`
