@@ -32,10 +32,10 @@ yarn start
 
 ## Screenshots
 
-![Screenshot 1](https://preview.ibb.co/eRZ0hz/imagem_1.png)
-![Screenshot 2](https://preview.ibb.co/i3rrpe/imagem_2.png)
-![Screenshot 3](https://preview.ibb.co/fVcsvK/imagem_3.png)
-![Screenshot 4](https://preview.ibb.co/neSgpe/imagem_4.png)
+![Screenshot 1](https://image.ibb.co/jSUY2z/imagem_1.png)
+![Screenshot 2](https://image.ibb.co/i3rrpe/imagem_2.png)
+![Screenshot 3](https://image.ibb.co/fVcsvK/imagem_3.png)
+![Screenshot 4](https://image.ibb.co/neSgpe/imagem_4.png)
 
 ## Construído com
 
