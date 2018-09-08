@@ -14,9 +14,9 @@ import { Creators as DeputiesActions } from '../../store/ducks/deputies';
 import { StyledButton, ContainerButtonMore } from './styles';
 
 class Deputies extends Component {
-    componentDidMount = () => {
+    componentDidMount() {
         this.getDeputies();
-    };
+    }
 
     getDeputies = () => {
         const { getDeputiesRequest, deputies } = this.props;

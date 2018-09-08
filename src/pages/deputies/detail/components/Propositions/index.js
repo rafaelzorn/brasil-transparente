@@ -16,7 +16,7 @@ import { Creators as CalendarActions } from '../../../../../store/ducks/calendar
 import { Creators as ModalActions } from '../../../../../store/ducks/modal';
 
 class Propositions extends Component {
-    componentDidMount = () => {
+    componentDidMount() {
         const {
             getDeputyPropositionsRequest, deputyId, calendar, setCurrentDate,
         } = this.props;
@@ -24,15 +24,15 @@ class Propositions extends Component {
         setCurrentDate();
 
         getDeputyPropositionsRequest(deputyId, calendar.year);
-    };
+    }
 
-    componentDidUpdate = (prevProps) => {
+    componentDidUpdate(prevProps) {
         const { calendar, deputyId, getDeputyPropositionsRequest } = this.props;
 
         if (prevProps.calendar !== calendar) {
             getDeputyPropositionsRequest(deputyId, calendar.year);
         }
-    };
+    }
 
     render() {
         const {
@@ -55,9 +55,7 @@ class Propositions extends Component {
                         <Loading />
                     ) : (
                         deputyPropositions.data.map(deputyProposition => (
-                            <StyledPaperExpense
-                                key={Math.random(10)}
-                            >
+                            <StyledPaperExpense key={Math.random(10)}>
                                 <div className="content-higher">
                                     <span className="name">
                                         {deputyProposition.siglaTipo} {deputyProposition.numero}/

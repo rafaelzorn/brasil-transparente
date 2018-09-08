@@ -28,11 +28,11 @@ class Deputy extends Component {
         };
     }
 
-    componentDidMount = () => {
+    componentDidMount() {
         const { getDeputyDetailsRequest, match } = this.props;
 
         getDeputyDetailsRequest(match.params.id);
-    };
+    }
 
     onExited = () => {
         const { history } = this.props;

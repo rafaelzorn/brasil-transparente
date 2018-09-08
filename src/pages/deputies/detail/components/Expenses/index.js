@@ -17,7 +17,7 @@ import { Creators as CalendarActions } from '../../../../../store/ducks/calendar
 import { StyledPaperContainer, StyledPaperExpense } from './styles';
 
 class Expenses extends Component {
-    componentDidMount = () => {
+    componentDidMount() {
         const {
             getDeputyExpensesRequest,
             deputyId,
@@ -30,9 +30,9 @@ class Expenses extends Component {
 
         getDeputyExpensesRequest(deputyId, calendar.month, calendar.year);
         getDeputyExpensesByYearRequest(deputyId, calendar.year);
-    };
+    }
 
-    componentDidUpdate = (prevProps) => {
+    componentDidUpdate(prevProps) {
         const {
             calendar,
             deputyId,
@@ -47,7 +47,7 @@ class Expenses extends Component {
         if (prevProps.calendar.year !== calendar.year) {
             getDeputyExpensesByYearRequest(deputyId, calendar.year);
         }
-    };
+    }
 
     render() {
         const { deputyExpenses, total, deputyExpensesByYear } = this.props;

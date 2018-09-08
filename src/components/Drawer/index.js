@@ -22,12 +22,12 @@ class Drawer extends Component {
         },
     };
 
-    componentDidMount = () => {
+    componentDidMount() {
         const { getPartiesRequest, getStatesRequest } = this.props;
 
         getStatesRequest();
         getPartiesRequest();
-    };
+    }
 
     handleFilterChange = (e) => {
         const { filters } = this.state;

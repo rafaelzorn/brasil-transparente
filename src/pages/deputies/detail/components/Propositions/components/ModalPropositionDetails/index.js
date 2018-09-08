@@ -14,7 +14,7 @@ import { Creators as PropositionProceedingsActions } from '../../../../../../../
 import { StyledReactModal, StyledPaperProceedings, StyledPaperContainer } from './styles';
 
 class ModalPropositionDetails extends Component {
-    componentDidMount = () => {
+    componentDidMount() {
         const {
             modal,
             getPropositionDetailsRequest,
@@ -23,7 +23,7 @@ class ModalPropositionDetails extends Component {
 
         getPropositionDetailsRequest(modal.params.propositionId);
         getPropositionProceedingsRequest(modal.params.propositionId);
-    };
+    }
 
     render() {
         const {
