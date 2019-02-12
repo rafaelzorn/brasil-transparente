@@ -10,7 +10,7 @@ export function* getDeputyPropositions(action) {
 
         const response = yield call(
             api.get,
-            `proposicoes?itens=100&ano=${year}&idAutor=${deputyId}&ordem=DESC&ordenarPor=ano`,
+            `proposicoes?itens=100&ano=${year}&idDeputadoAutor=${deputyId}&ordem=DESC&ordenarPor=ano`,
         );
 
         yield put(DeputyPropositionsActions.getDeputyPropositionsSuccess(response.data.dados));

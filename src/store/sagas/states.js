@@ -6,7 +6,7 @@ import { Creators as ToastsActions, Types as ToastTypes } from '../ducks/toasts'
 
 export function* getStates() {
     try {
-        const response = yield call(api.get, '/referencias/uf');
+        const response = yield call(api.get, '/referencias/deputados/siglaUF');
 
         yield put(StatesActions.getStatesSuccess(response.data.dados));
     } catch (err) {

@@ -94,7 +94,7 @@ class Drawer extends Component {
                             )}
 
                             {states.data.map(state => (
-                                <option key={state.id}>{state.sigla}</option>
+                                <option key={state.cod}>{state.sigla}</option>
                             ))}
                         </select>
 
