@@ -15,7 +15,11 @@ import { StyledButton, ContainerButtonMore } from './styles';
 
 class Deputies extends Component {
     componentDidMount() {
-        this.getDeputies();
+        const { deputies } = this.props;
+
+        if (deputies.data.length === 0) {
+            this.getDeputies();
+        }
     }
 
     getDeputies = () => {
