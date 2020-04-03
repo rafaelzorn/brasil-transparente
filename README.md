@@ -6,7 +6,7 @@
 
 ## Overview
 
-Information on government spending and projects easily and quickly extracted directly from the government api.
+Information about government spending and projects easily and quickly, extracted directly from the government api.
 
 This project was developed for the Rocketseat GoReact course.
 
