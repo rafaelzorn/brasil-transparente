@@ -1,50 +1,40 @@
-# Brasil Transparente
+<p align="center">
+  <h3 align="center">Brasil Transparente</h3>
+</p>
 
-Informações a respeito de gastos, projetos de deputados de forma fácil e rápida extraidas diretamente da api governamental.
+---
 
-Esse é meu projeto final, desenvolvido para o curso GoReact da Rocketseat.
+## Overview
 
-### Instalando
+Information on government spending and projects easily and quickly extracted directly from the government api.
 
-Primeiro você tem que usar o seu Terminal para chegar ao diretório que você deseja armazenar o projeto. Então você executa:
+This project was developed for the Rocketseat GoReact course.
 
-```
-git clone https://github.com/rafaelzorn/brasil-transparente.git
-```
+## Preview
 
-Acesse o diretório criado e você estará no diretório-raiz do projeto:
+![brasil-transparente-preview-1](./preview-1.png)
+![brasil-transparente-preview-2](./preview-2.png)
+![brasil-transparente-preview-3](./preview-3.png)
+![brasil-transparente-preview-4](./preview-4.png)
 
-```
-cd brasil-transparente
-```
+## APIs
 
-Instalar as dependências do projeto:
+- [Dados Abertos](https://dadosabertos.camara.leg.br/)
 
-```
-yarn
-```
+## Running the project
 
-Por fim, execute o servidor de desenvolvimento, o aplicativo deve estar disponível na seguinte URL: http://localhost:3000
+- Clone this repository
+- Install all dependencies using the command `yarn`
+- Run `yarn start`
+- Access http://localhost:3000/
 
-```
-yarn start
-```
+## Used technologies
 
-## Screenshots
-
-![Screenshot 1](https://image.ibb.co/jSUY2z/imagem_1.png)
-![Screenshot 2](https://image.ibb.co/juWdvq/image.png)
-![Screenshot 3](https://image.ibb.co/fVcsvK/imagem_3.png)
-![Screenshot 4](https://image.ibb.co/mQffG9/imagem_4.png)
-
-## Construído com
-
--   [React](https://reactjs.org)
--   [Axios](https://github.com/axios/axios)
--   [Redux Saga](https://redux-saga.js.org)
--   [Redux](https://redux.js.org)
--   [MATERIAL-UI](https://material-ui.com)
--   [Lodash](https://lodash.com)
--   [Recharts](http://recharts.org)
--   [Moment](https://momentjs.com)
--   [REACT ROUTER](https://reacttraining.com/react-router/web/guides/philosophy)
+- React
+- React Router DOM
+- Redux
+- Redux Sagas
+- Axios
+- Recharts
+- Material -UI
+- Other React JS libs
